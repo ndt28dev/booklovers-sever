@@ -101,20 +101,20 @@ const vnpayReturn = async (req, res) => {
 
     if (!orderCode) {
       return res.redirect(
-        "http://localhost:8081/thanh-toan-that-bai?error=missing-order-code"
+        `${process.env.CLIENT_URL}/thanh-toan-that-bai?error=missing-order-code`
       );
     }
 
     if (responseCode === "00") {
       await orderService.updatePaymentSuccess(orderCode);
-      return res.redirect("http://localhost:8081/thanh-toan-thanh-cong");
+      return res.redirect(`${process.env.CLIENT_URL}/thanh-toan-thanh-cong`);
     } else {
       await orderService.updatePaymentFailed(orderCode);
-      return res.redirect("http://localhost:8081/thanh-toan-that-bai");
+      return res.redirect(`${process.env.CLIENT_URL}/thanh-toan-that-bai`);
     }
   } else {
     return res.redirect(
-      "http://localhost:8081/thanh-toan-that-bai?error=invalid-signature"
+      `${process.env.CLIENT_URL}/thanh-toan-that-bai?error=invalid-signature`
     );
   }
 };
