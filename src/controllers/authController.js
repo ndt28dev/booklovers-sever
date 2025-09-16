@@ -28,15 +28,15 @@ const sendResetOTP = async (req, res) => {
 
     otpStore.set(email, { otp, expiresAt });
 
-    await sendMail(
-      email,
-      "Mã OTP đặt lại mật khẩu - BookLovers",
-      `
-        <h3>Mã OTP của bạn: <strong>${otp}</strong></h3>
-        <p>OTP có hiệu lực trong 1 phút.</p>
-        <p>Không chia sẻ mã này cho bất kỳ ai.</p>
-      `
-    );
+    // await sendMail(
+    //   email,
+    //   "Mã OTP đặt lại mật khẩu - BookLovers",
+    //   `
+    //     <h3>Mã OTP của bạn: <strong>${otp}</strong></h3>
+    //     <p>OTP có hiệu lực trong 1 phút.</p>
+    //     <p>Không chia sẻ mã này cho bất kỳ ai.</p>
+    //   `
+    // );
 
     res.status(200).json({ message: "Đã gửi OTP về email." });
   } catch (error) {
@@ -86,7 +86,7 @@ const resetPassword = async (req, res) => {
         <p>Trân trọng,<br/>Đội ngũ BookLovers</p>
       `;
 
-    await sendMail(email, subject, htmlContent);
+    // await sendMail(email, subject, htmlContent);
 
     await new Promise((resolve) => setTimeout(resolve, 1500));
     return res.status(200).json({ message: "Đổi mật khẩu thành công." });
@@ -115,15 +115,15 @@ const sendCurrentEmailOTP = async (req, res) => {
 
     emailChangeOTPStore.set(currentEmail, { otp, expiresAt });
 
-    await sendMail(
-      currentEmail,
-      "Mã OTP xác nhận đổi email - BookLovers",
-      `
-        <h3>Mã OTP để đổi email: <strong>${otp}</strong></h3>
-        <p>Mã có hiệu lực trong 2 phút.</p>
-        <p>Không chia sẻ mã này với bất kỳ ai.</p>
-      `
-    );
+    // await sendMail(
+    //   currentEmail,
+    //   "Mã OTP xác nhận đổi email - BookLovers",
+    //   `
+    //     <h3>Mã OTP để đổi email: <strong>${otp}</strong></h3>
+    //     <p>Mã có hiệu lực trong 2 phút.</p>
+    //     <p>Không chia sẻ mã này với bất kỳ ai.</p>
+    //   `
+    // );
     // await new Promise((resolve) => setTimeout(resolve, 800));
     res.status(200).json({ message: "Đã gửi OTP đến email hiện tại." });
   } catch (err) {
@@ -198,15 +198,15 @@ const updateToNewEmail = async (req, res) => {
     await userService.updateUserEmail(currentEmail, newEmail);
     verifiedEmailChange.delete(currentEmail);
 
-    await sendMail(
-      newEmail,
-      "Xác nhận đổi email thành công - BookLovers",
-      `
-        <h3>Email của bạn đã được đổi thành công.</h3>
-        <p>Nếu bạn không thực hiện thao tác này, vui lòng liên hệ với chúng tôi ngay lập tức.</p>
-        <p>Trân trọng,<br/>Đội ngũ BookLovers</p>
-      `
-    );
+    // await sendMail(
+    //   newEmail,
+    //   "Xác nhận đổi email thành công - BookLovers",
+    //   `
+    //     <h3>Email của bạn đã được đổi thành công.</h3>
+    //     <p>Nếu bạn không thực hiện thao tác này, vui lòng liên hệ với chúng tôi ngay lập tức.</p>
+    //     <p>Trân trọng,<br/>Đội ngũ BookLovers</p>
+    //   `
+    // );
     await new Promise((resolve) => setTimeout(resolve, 800));
     return res.status(200).json({ message: "Cập nhật email mới thành công." });
   } catch (err) {

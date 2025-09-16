@@ -14,17 +14,17 @@ const createOrder = async (req, res) => {
 
     const user = await userService.getUserById(userId);
     const { email, fullname } = user;
-    await sendMail(
-      email,
-      "Đặt hàng thành công - BookLovers ❤️",
-      `
-        <h2>Xin chào ${fullname},</h2>
-        <p>Bạn đã đặt hàng thành công tại <strong>BookLovers</strong>.</p>
-        <p><strong>Mã đơn hàng:</strong> ${orderCode}</p>
-        <p>Chúng tôi sẽ xử lý đơn hàng của bạn trong thời gian sớm nhất.</p>
-        <p style="margin-top:20px;">-- BookLovers Team ❤️</p>
-      `
-    );
+    // await sendMail(
+    //   email,
+    //   "Đặt hàng thành công - BookLovers ❤️",
+    //   `
+    //     <h2>Xin chào ${fullname},</h2>
+    //     <p>Bạn đã đặt hàng thành công tại <strong>BookLovers</strong>.</p>
+    //     <p><strong>Mã đơn hàng:</strong> ${orderCode}</p>
+    //     <p>Chúng tôi sẽ xử lý đơn hàng của bạn trong thời gian sớm nhất.</p>
+    //     <p style="margin-top:20px;">-- BookLovers Team ❤️</p>
+    //   `
+    // );
     res.status(201).json({
       message: "Đặt hàng thành công",
       orderId,
