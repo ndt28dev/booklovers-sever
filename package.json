@@ -7,7 +7,7 @@
     "start": "nodemon --exec babel-node src/server.js"
   },
   "engines": {
-    "node": "24.x"
+    "node": "18"
   },
   "author": "",
   "license": "ISC",
